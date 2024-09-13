@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: demo-vm
+spec:
+  generators:
+  # Only select external clusters, excludes local cluster
+  - clusters: {}
+  template:
+    metadata:
+      name: "demo-vm"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/kmcolli/virt-acm-gitops-demo.git
+        targetRevision: HEAD
+        path: "applicationsets/demo-vm/kustomize/dev"
+      destination:
+        server: "{{server}}"
+        namespace: demo-vm
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        automated:
+          selfHeal: true
+          prune: true
