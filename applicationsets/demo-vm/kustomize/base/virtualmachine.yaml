@@ -1,8 +1,7 @@
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
-  name: example-vm
-  namespace: demo-vm
+  name: vm
 spec:
   running: true
   template:

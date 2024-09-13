@@ -1,23 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: demo-vm
+  name: vm
 spec:
   generators:
-  # Only select external clusters, excludes local cluster
   - clusters: {}
+    list:
+      elements:
+      - appName: dev-vm
+        gitPath: dev
+        namespace: dev-vm
+      - appName: prod-vm
+        gitPath: prod
+        namespace: prod-vm
   template:
     metadata:
-      name: "demo-vm"
+      name: {{appName}}
     spec:
       project: default
       source:
-        repoURL: https://github.com/kmcolli/virt-acm-gitops-demo.git
+        repoURL: https://github.com/rh-mobb/rosa-virt-gitops.git
         targetRevision: HEAD
-        path: "applicationsets/demo-vm/kustomize/dev"
+        path: "applicationsets/demo-vm/kustomize/{{gitPath}}"
       destination:
         server: "{{server}}"
-        namespace: demo-vm
+        namespace: {{namespace}}
       syncPolicy:
         syncOptions:
         - CreateNamespace=true

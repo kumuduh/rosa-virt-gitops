@@ -8,6 +8,9 @@ namePrefix: dev-
 patches:
 - patch: |
     - op: replace
+        path: /spec/template/spec/domain/memory/guest
+        value: 2Gi
+    - op: replace
       path: /spec/template/spec/volumes/1/cloudInitNoCloud/userData
       value: |-
         package_upgrade: true
