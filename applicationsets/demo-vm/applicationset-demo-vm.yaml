@@ -21,7 +21,7 @@ spec:
       source:
         repoURL: https://github.com/rh-mobb/rosa-virt-gitops.git
         targetRevision: HEAD
-        path: "applicationsets/demo-vm/kustomize/{{gitPath}}"
+        path: "applicationsets/vm/kustomize/{{gitPath}}"
       destination:
         name: in-cluster
         namespace: "{{namespace}}"
