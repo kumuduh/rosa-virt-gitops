@@ -4,19 +4,19 @@ kind: Kustomization
 namePrefix: dev-
 
 patches:
-- patch: |
-    - op: replace
-      path /spec/running
-      value: false
-    - op: replace
-      path: /spec/template/spec/domain/memory/guest
-      value: 3Gi
-    - op: replace
-      path: /spec/template/spec/volumes/1/cloudInitNoCloud/userData
-      value: |-
-        #cloud-config
-        user: fedora
-        password: fedora123
-        chpasswd: { expire: False }
-  target:
-    kind: VirtualMachine
+  - patch: |
+      - op: replace
+        path /spec/running
+        value: false
+      - op: replace
+        path: /spec/template/spec/domain/memory/guest
+        value: 3Gi
+      - op: replace
+        path: /spec/template/spec/volumes/1/cloudInitNoCloud/userData
+        value: |-
+          #cloud-config
+          user: fedora
+          password: fedora123
+          chpasswd: { expire: False }
+    target:
+      kind: VirtualMachine
