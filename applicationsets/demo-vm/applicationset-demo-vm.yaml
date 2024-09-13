@@ -1,11 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: vm
+  name: vms
 spec:
   generators:
   - clusters: {}
-    list:
+  - list:
       elements:
       - appName: dev-vm
         gitPath: dev
@@ -15,7 +15,7 @@ spec:
         namespace: prod-vm
   template:
     metadata:
-      name: {{appName}}
+      name: "{{appName}}"
     spec:
       project: default
       source:
@@ -23,8 +23,8 @@ spec:
         targetRevision: HEAD
         path: "applicationsets/demo-vm/kustomize/{{gitPath}}"
       destination:
-        server: "{{server}}"
-        namespace: {{namespace}}
+        name: in-cluster
+        namespace: "{{namespace}}"
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
