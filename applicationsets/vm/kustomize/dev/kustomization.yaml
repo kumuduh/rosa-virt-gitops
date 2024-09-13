@@ -6,7 +6,7 @@ namePrefix: dev-
 
           #cloud-config
 patches:
-- patch: |
+  - patch: |
       - op: replace
         path /spec/running
         value: false
