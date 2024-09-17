@@ -19,7 +19,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/rh-mobb/rosa-virt-gitops.git
+        repoURL: https://github.com/kumuduh/rosa-virt-gitops.git
         targetRevision: HEAD
         path: "applicationsets/vm/kustomize/{{gitPath}}"
       destination:
